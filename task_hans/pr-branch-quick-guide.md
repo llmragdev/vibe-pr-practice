@@ -1,8 +1,57 @@
 # PR Branch Practice Quick Guide
 
-나중에 `vibe-pr-practice` 저장소에서 혼자 다시 연습할 때 따라 하는 짧은 절차입니다.
+This is a short operating guide for practicing GitHub Issue, branch, PR, review, and merge flow.
 
-## 0. 시작 상태 확인
+The actual coding instructions live in the task files:
+
+- `task/frontend/issue-1.md`
+- `task/backend/issue-2.md`
+- `task/docs/issue-3.md`
+- `task/frontend/review-1.md`
+- `task/backend/review-2.md`
+- `task/docs/review-3.md`
+
+Use this guide to know **who does what** and **in what order**.
+
+## 0. Program Overview
+
+This repository uses a very small JavaScript example program that runs with Node.js.
+
+Files:
+
+- `frontend/app.js`: Defines `greet(name)` and prints a greeting.
+- `backend/api.js`: Defines `health()` and returns a simple status object.
+- `docs/usage.md`: Documents how to run the sample.
+
+Run:
+
+```powershell
+node frontend/app.js
+```
+
+Initial output:
+
+```text
+Hello, world
+```
+
+## 1. Roles
+
+### You: repository owner / reviewer
+
+You create GitHub Issues, ask an AI coding agent to work from the task files, review PRs, merge PRs, and move completed task files to `task_done/`.
+
+### AI coding agent: worker
+
+The agent reads one `task/*/issue-*.md` file, creates a branch, edits code, commits, pushes, and creates a PR.
+
+### Task files: source of truth
+
+Do not duplicate the full task requirements in this quick guide. The actual requirements are inside the task files.
+
+## 2. Start From A Clean Main
+
+Run this before starting or assigning work.
 
 ```powershell
 git checkout main
@@ -12,18 +61,18 @@ git log --oneline -3
 git remote -v
 ```
 
-명령어 설명:
+Command notes:
 
-- `git checkout main`: 현재 작업 위치를 `main` 브랜치로 이동합니다.
-- `git pull --ff-only origin main`: GitHub의 `origin/main` 내용을 로컬 `main`으로 가져옵니다.
-- `--ff-only`: fast-forward 방식으로만 pull 하겠다는 뜻입니다. 내 로컬 `main`에 따로 커밋이 없고 GitHub 쪽만 앞서 있을 때만 업데이트합니다. 꼬인 merge commit을 실수로 만들지 않게 막아주는 안전 옵션입니다.
-- `origin`: 원격 저장소 이름입니다. 보통 GitHub repo를 `origin`이라고 부릅니다.
-- `main`: 가져올 원격 브랜치 이름입니다.
-- `git status`: 현재 브랜치, 변경 파일, 커밋할 파일이 있는지 확인합니다.
-- `git log --oneline -3`: 최근 커밋 3개를 한 줄씩 짧게 봅니다.
-- `git remote -v`: 연결된 원격 저장소 주소를 확인합니다.
+- `git checkout main`: Move to the main branch.
+- `git pull --ff-only origin main`: Update local `main` from GitHub only if Git can fast-forward cleanly.
+- `--ff-only`: Safety option. It prevents Git from creating an unexpected merge commit during pull.
+- `origin`: The remote GitHub repository name.
+- `main`: The branch to update from.
+- `git status`: Shows changed, staged, and untracked files.
+- `git log --oneline -3`: Shows the latest 3 commits in short form.
+- `git remote -v`: Shows the connected GitHub remote URL.
 
-기대 상태:
+Expected clean state:
 
 ```text
 On branch main
@@ -31,282 +80,109 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-참고:
+If you see `Untracked files`, Git sees a new file that has not been added yet. Add and commit it if it should be kept.
 
-- `Already up to date.`는 GitHub와 로컬이 이미 같다는 뜻입니다.
-- `Untracked files`는 Git이 아직 추적하지 않는 새 파일이 있다는 뜻입니다.
-- `task_hans/pr-branch-quick-guide.md`가 untracked로 보이면 아직 `git add`를 하지 않은 상태입니다.
-- 문서를 원격에 올리려면 `git add`, `git commit`, `git push`를 하면 됩니다.
+## 3. Create GitHub Issues
 
-## 1. GitHub Issue 만들기
+Owner action.
 
-GitHub 저장소의 `Issues` 탭에서 아래 3개를 만듭니다.
+Create three GitHub Issues in the repository. Keep the GitHub Issue short, because the detailed task instruction already exists in `task/`.
 
-### Issue #1
-
-Title:
+Suggested Issue titles:
 
 ```text
 frontend/greet-exclamation
-```
-
-Body:
-
-```markdown
-`frontend/app.js`의 `greet(name)` 함수가 `Hello, world!`를 출력하도록 수정한다.
-
-Acceptance Criteria:
-- `node frontend/app.js` 실행 결과가 `Hello, world!`이다.
-- PR 본문에 `References #1`을 포함한다.
-```
-
-### Issue #2
-
-Title:
-
-```text
 backend/health-version
-```
-
-Body:
-
-```markdown
-`backend/api.js`의 `health()` 반환값에 `version: "1.0.0"`을 추가한다.
-
-Acceptance Criteria:
-- `health()`가 `{ status: "ok", version: "1.0.0" }`를 반환한다.
-- PR 본문에 `References #2`를 포함한다.
-```
-
-### Issue #3
-
-Title:
-
-```text
 docs/add-run-guide
 ```
 
-Body:
+Suggested Issue body template:
 
 ```markdown
-`docs/usage.md`에 Node.js 실행 방법을 추가한다.
+See the matching task file in this repository.
 
-Acceptance Criteria:
-- `node frontend/app.js` 실행 예시가 문서에 포함된다.
-- PR 본문에 `References #3`을 포함한다.
+Task file:
+- `task/frontend/issue-1.md`
+
+Acceptance:
+- Worker opens a PR that references this issue.
+- Reviewer verifies the PR diff before merge.
 ```
 
-## 2. Issue #1 작업
+Use the matching task file for each issue:
 
-```powershell
-git checkout main
-git pull --ff-only origin main
-git checkout -b vibe/worker/frontend-greet-exclamation-1
+- Issue #1: `task/frontend/issue-1.md`
+- Issue #2: `task/backend/issue-2.md`
+- Issue #3: `task/docs/issue-3.md`
+
+## 4. Ask The Agent To Work On Issue #1
+
+Owner action.
+
+Give the AI coding agent this instruction:
+
+```text
+Read `task/frontend/issue-1.md` and execute it.
+
+Do not work directly on `main`.
+Create the branch requested in the task file.
+Modify only the required files.
+Run the verification command.
+Commit, push, and create a PR to `main`.
+Include `References #1` in the PR body.
 ```
 
-명령어 설명:
+Agent action.
 
-- `git checkout main`: 작업 브랜치를 만들기 전에 기준 브랜치인 `main`으로 이동합니다.
-- `git pull --ff-only origin main`: 최신 `main`을 기준으로 작업하기 위해 GitHub의 변경사항을 가져옵니다.
-- `git checkout -b 브랜치명`: 새 브랜치를 만들고 바로 그 브랜치로 이동합니다.
-- `vibe/worker/frontend-greet-exclamation-1`: Issue #1 작업용 브랜치 이름입니다. `/`는 폴더가 아니라 브랜치 이름을 보기 좋게 나누는 관례입니다.
+The agent should do the branch, edit, test, commit, push, and PR creation described in `task/frontend/issue-1.md`.
 
-`frontend/app.js`를 수정합니다.
+## 5. Review Issue #1 PR
 
-```js
-function greet(name) {
-  return `Hello, ${name}!`;
-}
+Owner action.
 
-console.log(greet("world"));
-```
-
-검증, 커밋, push:
-
-```powershell
-node frontend/app.js
-git add frontend/app.js
-git commit -m "feat: add exclamation to frontend greeting"
-git push -u origin vibe/worker/frontend-greet-exclamation-1
-```
-
-명령어 설명:
-
-- `node frontend/app.js`: 수정한 JavaScript 파일을 실행해서 결과를 확인합니다.
-- `git add frontend/app.js`: 이 파일 변경분을 다음 커밋에 포함하도록 staged 상태로 올립니다.
-- `git commit -m "..."`: staged 된 변경분을 하나의 커밋으로 저장합니다.
-- `feat:`: 기능 변경 커밋이라는 의미의 커밋 메시지 접두어입니다.
-- `git push -u origin 브랜치명`: 내 로컬 브랜치를 GitHub 원격 저장소에 올립니다.
-- `-u`: 다음부터 이 브랜치에서 `git push`만 쳐도 같은 원격 브랜치로 push 되게 연결합니다.
-
-PR 생성:
-
-```powershell
-gh pr create --base main --head vibe/worker/frontend-greet-exclamation-1 --title "feat: add exclamation to frontend greeting #1" --body "References #1"
-```
-
-명령어 설명:
-
-- `gh pr create`: GitHub CLI로 Pull Request를 만듭니다.
-- `--base main`: PR이 합쳐질 대상 브랜치입니다.
-- `--head 브랜치명`: PR에 올릴 작업 브랜치입니다.
-- `--title`: PR 제목입니다.
-- `--body`: PR 본문입니다.
-- `References #1`: PR과 Issue #1을 연결합니다. merge만으로 issue를 자동 종료하지는 않고, 연결 참고로 남깁니다.
-
-## 3. Issue #2 작업
-
-```powershell
-git checkout main
-git pull --ff-only origin main
-git checkout -b vibe/worker/backend-health-version-2
-```
-
-명령어 설명:
-
-- Issue #2도 반드시 최신 `main`에서 새 브랜치를 만듭니다.
-- 이미 다른 브랜치에 있다면 `git checkout main`으로 돌아온 뒤 시작합니다.
-- `vibe/worker/backend-health-version-2`는 backend Issue #2 전용 작업 브랜치입니다.
-
-`backend/api.js`를 수정합니다.
-
-```js
-function health() {
-  return { status: "ok", version: "1.0.0" };
-}
-
-module.exports = { health };
-```
-
-커밋, push:
-
-```powershell
-git add backend/api.js
-git commit -m "feat: add version to health response"
-git push -u origin vibe/worker/backend-health-version-2
-```
-
-명령어 설명:
-
-- `git add backend/api.js`: backend 파일 변경만 커밋 대상으로 올립니다.
-- `git commit -m "..."`
-  : health 응답에 version을 추가한 변경을 커밋합니다.
-- `git push -u origin vibe/worker/backend-health-version-2`: Issue #2 브랜치를 GitHub에 올립니다.
-
-PR 생성:
-
-```powershell
-gh pr create --base main --head vibe/worker/backend-health-version-2 --title "feat: add version to health response #2" --body "References #2"
-```
-
-명령어 설명:
-
-- `--base main`: GitHub에서 `main`으로 합치려는 PR입니다.
-- `--head vibe/worker/backend-health-version-2`: backend 작업 브랜치의 변경분을 PR로 올립니다.
-- `References #2`: Issue #2와 연결합니다.
-
-## 4. Issue #3 작업
-
-```powershell
-git checkout main
-git pull --ff-only origin main
-git checkout -b vibe/worker/docs-add-run-guide-3
-```
-
-명령어 설명:
-
-- docs 작업도 최신 `main`에서 시작합니다.
-- `vibe/worker/docs-add-run-guide-3`는 docs Issue #3 전용 작업 브랜치입니다.
-
-`docs/usage.md`를 수정합니다.
-
-````markdown
-# Usage
-
-Run the sample frontend file with Node.js.
-
-```powershell
-node frontend/app.js
-```
-````
-
-커밋, push:
-
-```powershell
-git add docs/usage.md
-git commit -m "docs: add sample run guide"
-git push -u origin vibe/worker/docs-add-run-guide-3
-```
-
-명령어 설명:
-
-- `git add docs/usage.md`: 문서 변경만 커밋 대상으로 올립니다.
-- `docs:`: 문서 변경 커밋이라는 의미의 커밋 메시지 접두어입니다.
-- `git push -u origin vibe/worker/docs-add-run-guide-3`: docs 작업 브랜치를 GitHub에 올립니다.
-
-PR 생성:
-
-```powershell
-gh pr create --base main --head vibe/worker/docs-add-run-guide-3 --title "docs: add sample run guide #3" --body "References #3"
-```
-
-명령어 설명:
-
-- `--title "docs: ... #3"`: PR 제목에 Issue 번호를 넣어 어떤 작업인지 바로 보이게 합니다.
-- `--body "References #3"`: PR 본문에서 Issue #3을 참조합니다.
-
-## 5. Review 확인
-
-PR 번호를 확인합니다.
+Find the open PR:
 
 ```powershell
 gh pr list --state open
 ```
 
-명령어 설명:
-
-- `gh pr list`: PR 목록을 봅니다.
-- `--state open`: 아직 열려 있는 PR만 봅니다.
-
-각 PR에서 diff를 봅니다.
+Inspect the PR:
 
 ```powershell
 gh pr view PR_NUMBER --comments
 gh pr diff PR_NUMBER
 ```
 
-명령어 설명:
+Command notes:
 
-- `PR_NUMBER`: GitHub PR 번호입니다. 예를 들어 PR #4라면 `4`를 넣습니다.
-- `gh pr view PR_NUMBER --comments`: PR 본문과 댓글을 확인합니다.
-- `gh pr diff PR_NUMBER`: PR에서 실제로 바뀐 코드를 확인합니다.
+- `PR_NUMBER`: The GitHub PR number. For PR #4, use `4`.
+- `gh pr view PR_NUMBER --comments`: Shows the PR body and comments.
+- `gh pr diff PR_NUMBER`: Shows the code changes in the PR.
 
-리뷰 코멘트를 남깁니다.
+Review checklist:
+
+- The PR changed the file requested by `task/frontend/issue-1.md`.
+- The behavior matches the task file.
+- The PR body includes `References #1`.
+
+Leave a review comment:
 
 ```powershell
 gh pr comment PR_NUMBER --body "Reviewed. Looks good."
 ```
 
-명령어 설명:
-
-- `gh pr comment`: PR에 댓글을 남깁니다.
-- `--body`: 댓글 내용을 직접 적습니다.
-
-## 6. Merge
-
-각 PR을 확인한 뒤 merge합니다.
+Merge:
 
 ```powershell
 gh pr merge PR_NUMBER --squash --delete-branch
 ```
 
-명령어 설명:
+Command notes:
 
-- `gh pr merge`: PR을 merge합니다.
-- `--squash`: PR 안의 여러 커밋을 하나의 커밋으로 합쳐서 `main`에 넣습니다.
-- `--delete-branch`: merge가 끝난 뒤 GitHub의 작업 브랜치를 삭제합니다.
+- `--squash`: Combine the PR commits into one commit on `main`.
+- `--delete-branch`: Delete the remote worker branch after merge.
 
-로컬 `main`을 최신화합니다.
+Update local `main`:
 
 ```powershell
 git checkout main
@@ -314,14 +190,52 @@ git pull --ff-only origin main
 git status
 ```
 
-명령어 설명:
+## 6. Repeat For Issue #2
 
-- PR을 GitHub에서 merge하면 원격 `main`이 앞서 갑니다.
-- 그래서 로컬 `main`에서도 `git pull --ff-only origin main`으로 최신 merge 결과를 가져와야 합니다.
+Owner action.
 
-## 7. 완료한 task 파일 이동
+Give the agent this instruction:
 
-PR 생성, 리뷰 코멘트, merge까지 끝난 뒤에만 이동합니다.
+```text
+Read `task/backend/issue-2.md` and execute it.
+
+Do not work directly on `main`.
+Create the branch requested in the task file.
+Modify only the required files.
+Run any reasonable verification available.
+Commit, push, and create a PR to `main`.
+Include `References #2` in the PR body.
+```
+
+Then review and merge the PR using the same commands from the previous section.
+
+Use the review checklist from `task/backend/review-2.md`.
+
+## 7. Repeat For Issue #3
+
+Owner action.
+
+Give the agent this instruction:
+
+```text
+Read `task/docs/issue-3.md` and execute it.
+
+Do not work directly on `main`.
+Create the branch requested in the task file.
+Modify only the required files.
+Commit, push, and create a PR to `main`.
+Include `References #3` in the PR body.
+```
+
+Then review and merge the PR using the same commands from the previous section.
+
+Use the review checklist from `task/docs/review-3.md`.
+
+## 8. Move Completed Task Files
+
+Owner action.
+
+Only do this after all three PRs have been created, reviewed, and merged.
 
 ```powershell
 New-Item -ItemType Directory -Force task_done\frontend, task_done\backend, task_done\docs
@@ -336,15 +250,13 @@ git commit -m "chore: move completed practice tasks"
 git push
 ```
 
-명령어 설명:
+Command notes:
 
-- `New-Item -ItemType Directory -Force ...`: 폴더가 없으면 만들고, 이미 있어도 오류 없이 넘어갑니다.
-- `git mv 기존경로 새경로`: Git이 파일 이동으로 인식하게 옮깁니다.
-- `git status`: 이동된 파일들이 staged 되었는지 확인합니다.
-- `chore:`: 기능이나 문서 내용 변경이 아니라 정리 작업이라는 의미의 커밋 메시지 접두어입니다.
-- `git push`: 현재 브랜치의 커밋을 GitHub에 올립니다. `-u`로 연결된 브랜치라면 `origin main`을 생략해도 됩니다.
+- `New-Item -ItemType Directory -Force ...`: Create folders if missing. Do nothing harmful if they already exist.
+- `git mv`: Move files in a way Git tracks as a rename.
+- `chore:`: Commit message prefix for repository maintenance work.
 
-## 8. 자주 확인할 명령어
+## 9. Useful Check Commands
 
 ```powershell
 git status
@@ -355,59 +267,51 @@ gh auth status
 gh pr list --state all
 ```
 
-명령어 설명:
+Command notes:
 
-- `git status`: 지금 변경된 파일과 staged 상태를 확인합니다.
-- `git branch --show-current`: 현재 내가 어느 브랜치에 있는지 확인합니다.
-- `git log --oneline -5`: 최근 커밋 5개를 짧게 확인합니다.
-- `git remote -v`: GitHub 원격 주소가 제대로 연결되어 있는지 봅니다.
-- `gh auth status`: GitHub CLI가 어떤 계정으로 로그인되어 있는지 확인합니다.
-- `gh pr list --state all`: 열린 PR, 닫힌 PR, merge된 PR을 모두 봅니다.
+- `git status`: Shows current file state.
+- `git branch --show-current`: Shows the current branch.
+- `git log --oneline -5`: Shows the latest 5 commits.
+- `git remote -v`: Shows the GitHub remote URL.
+- `gh auth status`: Shows which GitHub account is logged in.
+- `gh pr list --state all`: Shows open, closed, and merged PRs.
 
-## 9. 실수했을 때
+## 10. Recovery Commands
 
-아직 commit 전이면 파일 변경만 되돌립니다.
+Before using recovery commands, always run:
+
+```powershell
+git status
+git branch --show-current
+```
+
+Discard a file change before commit:
 
 ```powershell
 git restore FILE_PATH
 ```
 
-설명:
-
-- `FILE_PATH`에는 되돌릴 파일 경로를 넣습니다.
-- 예: `git restore frontend/app.js`
-- commit 전 변경이 사라지므로 실행 전에 `git status`로 꼭 확인합니다.
-
-방금 commit만 취소하고 수정 내용은 남깁니다.
+Undo the latest commit but keep the file changes staged:
 
 ```powershell
 git reset --soft HEAD~1
 ```
 
-설명:
-
-- `HEAD~1`: 현재 커밋 바로 이전을 뜻합니다.
-- `--soft`: 커밋만 취소하고 파일 수정 내용은 staged 상태로 남깁니다.
-
-원격 branch를 지웁니다.
+Delete a remote branch:
 
 ```powershell
 git push origin --delete BRANCH_NAME
 ```
 
-설명:
-
-- GitHub에 올라간 작업 브랜치를 삭제합니다.
-- 예: `git push origin --delete vibe/worker/frontend-greet-exclamation-1`
-
-로컬 branch를 지웁니다.
+Delete a local branch:
 
 ```powershell
 git checkout main
 git branch -D BRANCH_NAME
 ```
 
-설명:
+Notes:
 
-- 브랜치를 삭제하기 전에는 다른 브랜치, 보통 `main`으로 이동해야 합니다.
-- `-D`는 강제 삭제입니다. 아직 필요한 커밋이 있는지 `git branch --show-current`, `git log --oneline -5`로 확인한 뒤 사용합니다.
+- `HEAD~1`: The commit before the current one.
+- `--soft`: Remove the commit but keep the changes.
+- `-D`: Force delete a local branch. Use it only after confirming the branch is no longer needed.
