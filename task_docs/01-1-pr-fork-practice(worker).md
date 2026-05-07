@@ -151,8 +151,10 @@ git remote -v
 기대 값:
 
 ```text
-origin    https://github.com/hanschoi20/vibe-pr-practice.git
-upstream  https://github.com/llmragdev/vibe-pr-practice.git
+origin  https://github.com/hanschoi20/vibe-pr-practice.git (fetch)
+origin  https://github.com/hanschoi20/vibe-pr-practice.git (push)
+upstream        https://github.com/llmragdev/vibe-pr-practice.git (fetch)
+upstream        https://github.com/llmragdev/vibe-pr-practice.git (push)
 ```
 
 ## 5. main 최신화
