@@ -1,0 +1,59 @@
+(base) PS F:\proj_boot\git_practice> gh auth status
+github.com
+  ✓ Logged in to github.com account hanschoi20 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+(base) PS F:\proj_boot\git_practice> gh auth logout
+✓ Logged out of github.com account hanschoi20
+(base) PS F:\proj_boot\git_practice> gh auth login
+? Where do you use GitHub? GitHub.com                                                                                               
+? What is your preferred protocol for Git operations on this host? HTTPS                                                            
+? Authenticate Git with your GitHub credentials? Yes                                                                                
+? How would you like to authenticate GitHub CLI? Login with a web browser                                                           
+                                                                                                                                    
+! First copy your one-time code: 736A-0D54                                                                                          
+Press Enter to open https://github.com/login/device in your browser...                                                              
+✓ Authentication complete.
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as hanschoi20
+(base) PS F:\proj_boot\git_practice> gh api user --jq '"\(.id)+\(.login)@users.noreply.github.com"'
+{
+  "message": "Requires authentication",
+  "documentation_url": "https://docs.github.com/rest",
+  "status": "401"
+}
+gh: Requires authentication (HTTP 401)
+(base) PS F:\proj_boot\git_practice> gh api user --jq '"\(.id)+\(.login)@users.noreply.github.com"'
+failed to parse jq expression (line 1, column 1)
+    \(.id)+\(.login)@users.noreply.github.com
+    ^  unexpected token "\\"
+(base) PS F:\proj_boot\git_practice> gh api user --jq .id
+107975999
+(base) PS F:\proj_boot\git_practice>  gh api user --jq '{login: .login, id: .id, email: .email}'
+{
+  "email": null,
+  "id": 107975999,
+  "login": "hanschoi20"
+}
+(base) PS F:\proj_boot\git_practice> git config --global user.name "hanschoi20"
+(base) PS F:\proj_boot\git_practice> git config --global user.email "107975999+hanschoi20@users.noreply.github.com"
+(base) PS F:\proj_boot\git_practice> gh repo fork llmragdev/vibe-pr-practice --clone=false
+✓ Created fork hanschoi20/vibe-pr-practice
+(base) PS F:\proj_boot\git_practice> cd F:\proj_boot\git_practice
+(base) PS F:\proj_boot\git_practice> gh repo clone hanschoi20/vibe-pr-practice vibe-pr-practice-fork-hanschoi20
+Cloning into 'vibe-pr-practice-fork-hanschoi20'...
+remote: Enumerating objects: 80, done.
+remote: Counting objects: 100% (80/80), done.
+remote: Compressing objects: 100% (51/51), done.
+remote: Total 80 (delta 24), reused 76 (delta 20), pack-reused 0 (from 0)
+Receiving objects: 100% (80/80), 30.92 KiB | 1.47 MiB/s, done.
+Resolving deltas: 100% (24/24), done.
+Updating files: 100% (28/28), done.
+From https://github.com/llmragdev/vibe-pr-practice
+ * [new branch]      main       -> upstream/main
+! Repository llmragdev/vibe-pr-practice set as the default repository. To learn more about the default repository, run: gh repo set-default --help
+(base) PS F:\proj_boot\git_practice> 
+
