@@ -56,7 +56,107 @@ namkyuglobal2:vibe/worker/fork-frontend-greet-1
 -> llmragdev:main
 ```
 
-## 1. Worker 계정 확인
+## 0. Manager 준비: 원본 repository 내려받기와 정리
+
+이 단계는 Manager 작업입니다. Worker가 fork repository에서 작업하는 단계가 아닙니다.
+
+실습의 시작은 Manager가 원본 repository를 먼저 내려받는 것입니다.
+
+```text
+https://github.com/llmragdev/vibe-pr-practice
+```
+
+먼저 GitHub CLI 계정을 Manager 계정으로 맞춥니다.
+
+```powershell
+gh auth logout
+gh auth login
+gh auth status
+```
+
+기대 계정:
+
+```text
+llmragdev
+llmragdev@gmail.com
+```
+
+아직 local에 원본 repository가 없다면 상위 폴더에서 clone합니다.
+
+```powershell
+cd F:\proj_boot\git_practice
+gh repo clone llmragdev/vibe-pr-practice vibe-pr-practice
+cd F:\proj_boot\git_practice\vibe-pr-practice
+```
+
+이미 원본 repository 폴더가 있다면 해당 폴더로 이동해서 최신 상태로 맞춥니다.
+
+```powershell
+cd F:\proj_boot\git_practice\vibe-pr-practice
+git checkout main
+git pull --ff-only origin main
+```
+
+그다음 실습 문서, task 문서, 안내 자료 같은 업데이트는 Manager가 원본 repository에서 먼저 정리합니다. 예를 들어 `task_docs/01-pr-fork-practice.md`를 수정했다면, 그 변경사항을 원본 repository의 `main`에 먼저 커밋하고 push한 뒤 Worker fork 실습을 시작합니다.
+
+```powershell
+git status
+git add .
+git commit -m "docs: prepare fork practice guide"
+git push origin main
+```
+
+이미 커밋할 것이 없다면 다음처럼 나옵니다.
+
+```text
+nothing to commit, working tree clean
+```
+
+Manager 준비가 끝난 뒤 Worker 역할의 fork 실습은 아래 `1. Worker 계정 확인`부터 시작합니다.
+
+이번 실습에서는 원본 repository 폴더 안에 fork clone을 만들지 않습니다. 상위 폴더에 원본 폴더와 fork 작업 폴더를 나란히 둡니다.
+
+```text
+F:\proj_boot\git_practice
+  ├─ vibe-pr-practice              # 원본 repository, manager 작업용
+  └─ vibe-pr-practice-fork-worker  # fork repository, worker 작업용
+```
+
+VS Code도 작업 목적에 따라 다른 폴더를 열어야 합니다.
+
+```text
+manager로 review/merge할 때:
+F:\proj_boot\git_practice\vibe-pr-practice
+
+worker로 fork branch 작업할 때:
+F:\proj_boot\git_practice\vibe-pr-practice-fork-worker
+```
+
+헷갈릴 때는 VS Code 터미널에서 현재 위치와 remote를 확인합니다.
+
+```powershell
+pwd
+git remote -v
+```
+
+역할별로 보면 다음처럼 나눕니다.
+
+```text
+Manager가 하는 일:
+- 원본 repository 문서 업데이트
+- task 문서와 실습 자료 정리
+- 원본 main에 commit/push
+- Worker가 올린 PR review/merge
+
+Worker가 하는 일:
+- 원본 repository를 fork
+- fork repository를 clone
+- fork 안에서 branch 생성
+- 코드 수정, commit, push
+- fork branch에서 원본 main으로 PR 생성
+```
+
+## 1. Worker 작업 시작: 계정 확인
 
 worker가 GitHub CLI에서 `namkyuglobal2` 계정으로 로그인되어 있는지 확인합니다.
 
@@ -93,13 +193,15 @@ namkyuglobal2
 namkyuglobal2@gmail.com
 ```
 
-## 2. 원본 repository fork
+## 2. Worker 작업: 원본 repository fork
 
 worker 계정으로 원본 repository를 fork합니다.
 
 ```powershell
 gh repo fork llmragdev/vibe-pr-practice --clone=false
 ```
+
+이미 fork가 만들어져 있다면 새로 만들 필요가 없습니다. 그 경우에는 아래 clone 단계로 바로 넘어갑니다.
 
 브라우저에서 직접 진행해도 됩니다.
 
@@ -117,14 +219,36 @@ fork가 만들어졌는지 확인합니다.
 gh repo view namkyuglobal2/vibe-pr-practice --web
 ```
 
-## 3. fork repository clone
+## 3. Worker 작업: fork repository clone
 
 기존 branch 실습 폴더와 섞이지 않도록 worker fork 전용 폴더를 따로 만듭니다.
+
+반드시 상위 폴더인 `F:\proj_boot\git_practice`로 이동한 뒤 clone합니다.
 
 ```powershell
 cd F:\proj_boot\git_practice
 gh repo clone namkyuglobal2/vibe-pr-practice vibe-pr-practice-fork-worker
 cd F:\proj_boot\git_practice\vibe-pr-practice-fork-worker
+```
+
+VS Code를 사용한다면 clone이 끝난 뒤 아래 폴더를 엽니다.
+
+```text
+File
+-> Open Folder...
+-> F:\proj_boot\git_practice\vibe-pr-practice-fork-worker
+```
+
+터미널에서 바로 열 수도 있습니다.
+
+```powershell
+code F:\proj_boot\git_practice\vibe-pr-practice-fork-worker
+```
+
+이미 해당 폴더로 이동한 상태라면 다음 명령도 가능합니다.
+
+```powershell
+code .
 ```
 
 remote를 확인합니다.
@@ -140,7 +264,7 @@ origin  https://github.com/namkyuglobal2/vibe-pr-practice.git (fetch)
 origin  https://github.com/namkyuglobal2/vibe-pr-practice.git (push)
 ```
 
-## 4. upstream remote 연결
+## 4. Worker 작업: upstream remote 연결
 
 원본 repository를 `upstream` remote로 추가합니다.
 
@@ -160,7 +284,14 @@ upstream  https://github.com/llmragdev/vibe-pr-practice.git (push)
 
 fork 작업에서는 보통 `origin`에는 push하고, `upstream`에서는 최신 main을 가져옵니다.
 
-## 5. upstream main 최신화
+remote가 다음처럼 보이면 fork 실습 준비가 제대로 된 것입니다.
+
+```text
+origin   -> 내가 push할 fork repository
+upstream -> 최신 코드를 가져올 원본 repository
+```
+
+## 5. Worker 작업: upstream main 최신화
 
 원본 repository의 최신 상태를 가져옵니다.
 
@@ -176,7 +307,7 @@ fork repository의 `main`도 최신 상태로 맞춰 둡니다.
 git push origin main
 ```
 
-## 6. 작업 branch 생성
+## 6. Worker 작업: 작업 branch 생성
 
 fork local clone에서 새 branch를 만듭니다.
 
@@ -196,7 +327,7 @@ git branch --show-current
 vibe/worker/fork-frontend-greet-1
 ```
 
-## 7. 코드 수정
+## 7. Worker 작업: 코드 수정
 
 `frontend/app.js`를 수정해서 `greet("world")` 실행 결과가 다음처럼 나오게 합니다.
 
@@ -233,7 +364,7 @@ node frontend/app.js
 Hello, fork world!
 ```
 
-## 8. commit
+## 8. Worker 작업: commit
 
 변경 파일을 확인하고 commit합니다.
 
@@ -249,7 +380,7 @@ commit이 만들어졌는지 확인합니다.
 git log --oneline -3
 ```
 
-## 9. fork repository로 push
+## 9. Worker 작업: fork repository로 push
 
 worker는 원본 repository가 아니라 자신의 fork repository로 push합니다.
 
@@ -259,7 +390,7 @@ git push -u origin vibe/worker/fork-frontend-greet-1
 
 여기서 `origin`은 `namkyuglobal2/vibe-pr-practice`입니다.
 
-## 10. PR 생성
+## 10. Worker 작업: PR 생성
 
 fork branch에서 원본 repository의 `main`으로 PR을 만듭니다.
 
@@ -288,7 +419,7 @@ head repository: namkyuglobal2/vibe-pr-practice
 compare branch: vibe/worker/fork-frontend-greet-1
 ```
 
-## 11. Manager 계정으로 PR 확인
+## 11. Manager 작업: PR 확인
 
 manager는 원본 repository 폴더에서 확인합니다.
 
@@ -341,7 +472,7 @@ review comment 예시:
 gh pr comment PR_NUMBER --repo llmragdev/vibe-pr-practice --body "Reviewed by manager: fork PR direction and frontend greeting change look good."
 ```
 
-## 12. Manager merge
+## 12. Manager 작업: merge
 
 manager가 PR을 squash merge합니다.
 
@@ -356,7 +487,7 @@ git checkout main
 git pull --ff-only origin main
 ```
 
-## 13. Worker fork 최신화
+## 13. Worker 작업: fork 최신화
 
 merge 후 worker는 fork local clone에서 원본 repository의 최신 main을 다시 가져옵니다.
 
@@ -374,7 +505,7 @@ git push origin main
 git branch -d vibe/worker/fork-frontend-greet-1
 ```
 
-## 14. 완료 확인
+## 14. Manager와 Worker 완료 확인
 
 manager repository에서 확인합니다.
 
@@ -411,4 +542,3 @@ git log --oneline -5
 | 필요한 권한 | 원본 repository write 권한 필요 | 원본 repository write 권한 불필요 |
 | PR 방향 | `llmragdev:작업branch -> llmragdev:main` | `namkyuglobal2:작업branch -> llmragdev:main` |
 | 주 사용 상황 | 같은 팀 내부 협업 | 외부 기여자, 권한 없는 contributor |
-
