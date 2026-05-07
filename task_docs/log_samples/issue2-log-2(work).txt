@@ -1,0 +1,110 @@
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> gh auth logout
+✓ Logged out of github.com account llmragdev
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> gh auth login
+? Where do you use GitHub? GitHub.com                                                                                 
+? What is your preferred protocol for Git operations on this host? HTTPS                                              
+? Authenticate Git with your GitHub credentials? Yes                                                                  
+? How would you like to authenticate GitHub CLI? Login with a web browser                                             
+                                                                                                                      
+! First copy your one-time code: 4FD8-6600                                                                            
+Press Enter to open https://github.com/login/device in your browser...                                                
+✓ Authentication complete.
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as hanschoi20
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> gh auth status
+github.com
+  ✓ Logged in to github.com account hanschoi20 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git config user.name
+namkyuglobal2
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git config user.email
+namkyuglobal2@gmail.com
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git checkout main
+M       task_hans/05-github-issue-guide.md
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git pull --ff-only origin main
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 8 (delta 3), reused 6 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (8/8), 1.39 KiB | 1024 bytes/s, done.
+From https://github.com/llmragdev/vibe-pr-practice
+ * branch            main       -> FETCH_HEAD
+   31083ca..ce5c1a9  main       -> origin/main
+Updating 31083ca..ce5c1a9
+Fast-forward
+ frontend/app.js                          | 2 +-
+ {task => task_done}/frontend/issue-1.md  | 0
+ {task => task_done}/frontend/review-1.md | 0
+ 3 files changed, 1 insertion(+), 1 deletion(-)
+ rename {task => task_done}/frontend/issue-1.md (100%)
+ rename {task => task_done}/frontend/review-1.md (100%)
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git checkout -b vibe/worker/backend-health-version-2
+Switched to a new branch 'vibe/worker/backend-health-version-2'
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git branch --show-current
+vibe/worker/backend-health-version-2
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git status
+On branch vibe/worker/backend-health-version-2
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   backend/api.js
+        modified:   task_hans/05-github-issue-guide.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        "task_hans/00-\354\213\244\354\240\204\355\230\225 GitHub \355\230\221\354\227\205 \355\224\204\353\241\234\354\204\270\354\212\244 \352\260\200\354\235\264\353\223\234.md"
+        task_hans/06-git-switch-alternative-guide.md
+        task_hans/worker-work-history-log.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git add backend/api.js
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git commit -m "feat: add version to health response"
+[vibe/worker/backend-health-version-2 319c3a7] feat: add version to health response
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git push -u origin vibe/worker/backend-health-version-2
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 22 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 407 bytes | 203.00 KiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'vibe/worker/backend-health-version-2' on GitHub by visiting:
+remote:      https://github.com/llmragdev/vibe-pr-practice/pull/new/vibe/worker/backend-health-version-2
+remote: 
+To https://github.com/llmragdev/vibe-pr-practice.git
+ * [new branch]      vibe/worker/backend-health-version-2 -> vibe/worker/backend-health-version-2
+branch 'vibe/worker/backend-health-version-2' set up to track 'origin/vibe/worker/backend-health-version-2'.
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> gh pr create `
+>>   --base main `
+>>   --head vibe/worker/backend-health-version-2 `
+>>   --title "feat: add version to health response #2" `
+>>   --body "Closes #2"
+  
+Creating pull request for vibe/worker/backend-health-version-2 into main in llmragdev/vibe-pr-practice
+
+https://github.com/llmragdev/vibe-pr-practice/pull/3
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> git status
+On branch vibe/worker/backend-health-version-2
+Your branch is up to date with 'origin/vibe/worker/backend-health-version-2'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   task_hans/05-github-issue-guide.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        "task_hans/00-\354\213\244\354\240\204\355\230\225 GitHub \355\230\221\354\227\205 \355\224\204\353\241\234\354\204\270\354\212\244 \352\260\200\354\235\264\353\223\234.md"
+        task_hans/06-git-switch-alternative-guide.md
+        task_hans/worker-work-history-log.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice-worker> 

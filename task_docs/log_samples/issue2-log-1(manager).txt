@@ -1,0 +1,45 @@
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> gh auth status
+github.com
+  ✓ Logged in to github.com account llmragdev (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> git config user.name
+llmragdev
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> git config user.email
+llmragdev@gmail.com
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> gh issue create `
+>>   --title "backend: add version to health response" `
+>>   --body "Update backend/api.js so health() returns { status: \"ok\", version: \"1.0.0\" }."
+unknown arguments ["version:" "\\1.0.0\\" "}."]; please quote all values that have spaces
+
+Usage:  gh issue create [flags]
+
+Flags:
+  -a, --assignee login   Assign people by their login. Use "@me" to self-assign.
+  -b, --body string      Supply a body. Will prompt for one otherwise.
+  -F, --body-file file   Read body text from file (use "-" to read from standard input)
+  -e, --editor           Skip prompts and open the text editor to write the title and body in. The first line is the title and the remaining text is the body.
+  -l, --label name       Add labels by name
+  -m, --milestone name   Add the issue to a milestone by name
+  -p, --project title    Add the issue to projects by title
+      --recover string   Recover input from a failed run of create
+  -T, --template name    Template name to use as starting body text
+  -t, --title string     Supply a title. Will prompt for one otherwise.
+  -w, --web              Open the browser to create an issue
+  
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> gh issue create `
+>>   --title "backend: add version to health response" `
+>>   --body 'Update backend/api.js so health() returns { status: "ok", version: "1.0.0" }.'
+
+Creating issue in llmragdev/vibe-pr-practice
+
+https://github.com/llmragdev/vibe-pr-practice/issues/2
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> gh issue list --state open
+
+Showing 1 of 1 open issue in llmragdev/vibe-pr-practice
+
+ID  TITLE                                    LABELS  UPDATED               
+#2  backend: add version to health response          less than a minute ago
+(base) PS F:\proj_boot\git_practice\vibe-pr-practice> 
