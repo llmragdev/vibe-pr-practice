@@ -1,6 +1,10 @@
-# 01. PR Fork Practice
+# 01. PR Fork Practice - Sub
 
-이 문서는 fork 기반 PR 실습을 위한 가이드입니다.
+이 문서는 fork 기반 PR 실습의 상세 설명 문서입니다.
+
+실습 중 바로 따라 할 메인 가이드는 `task_docs/01-main-pr-fork-practice.md`를 사용합니다.
+
+아래 내용은 개념, 역할 구분, 상세 확인 절차, 완료 기준을 함께 설명합니다.
 
 기존 branch 실습은 같은 repository 안에서 branch를 만들어 PR을 보내는 흐름입니다. 이 실습에서는 worker가 main repository에 직접 push 권한이 없다고 가정하고, worker 계정의 fork repository에서 작업한 뒤 main repository로 Pull Request를 보냅니다.
 
@@ -101,9 +105,9 @@ cd F:\proj_boot\git_practice\vibe-pr-practice-fork-namkyuglobal2
 fatal: destination path 'vibe-pr-practice' already exists and is not an empty directory.
 
 
-실습 문서인 `task_docs/03-0-pr-branch-issue2_practice.md`, `task_docs/02-pr-branch-issue1_practice.md`, `task_docs/01-pr-fork-practice.md`를 수정하거나 확인할 때는 원본 repository 폴더(예시: "F:\proj_boot\git_practice\vibe-pr-practice") 에서 작업합니다.
+실습 문서인 `task_docs/03-0-pr-branch-issue2_practice.md`, `task_docs/02-pr-branch-issue1_practice.md`, `task_docs/01-main-pr-fork-practice.md`, `task_docs/01_sub-pr-fork-practice.md`를 수정하거나 확인할 때는 원본 repository 폴더(예시: "F:\proj_boot\git_practice\vibe-pr-practice") 에서 작업합니다.
 
-그다음 실습 문서, task 문서, 안내 자료 같은 업데이트는 Manager가 원본 repository에서 먼저 정리합니다. 예를 들어 `task_docs/01-pr-fork-practice.md`를 수정했다면, 그 변경사항을 원본 repository의 `main`에 먼저 커밋하고 push한 뒤 Worker fork 실습을 시작합니다.
+그다음 실습 문서, task 문서, 안내 자료 같은 업데이트는 Manager가 원본 repository에서 먼저 정리합니다. 예를 들어 `task_docs/01-main-pr-fork-practice.md`를 수정했다면, 그 변경사항을 원본 repository의 `main`에 먼저 커밋하고 push한 뒤 Worker fork 실습을 시작합니다.
 
 
 Manager 준비가 끝난 뒤 Worker 역할의 fork 실습은 아래 `1. Worker 계정 확인`부터 시작합니다.
