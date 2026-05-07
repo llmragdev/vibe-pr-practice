@@ -160,10 +160,19 @@ upstream        https://github.com/llmragdev/vibe-pr-practice.git (push)
 ## 5. main 최신화
 
 ```powershell
+# 1. 로컬의 main 브랜치로 이동합니다.
 git checkout main
+
+# 2. 원본 저장소(upstream)의 최신 변경 이력을 모두 가져옵니다. (데이터만 가져오고 병합은 안 함)
 git fetch upstream
+
+# 3. 원본 저장소(upstream)의 main 내용을 로컬 main 브랜치에 병합합니다.
+# --ff-only 옵션은 충돌 없이 순차적으로 업데이트(Fast-forward)가 가능할 때만 수행하도록 합니다.
 git pull --ff-only upstream main
+
+# 4. 최신화된 로컬 main 브랜치 내용을 본인의 fork 저장소(origin)의 main으로 밀어 넣습니다.
 git push origin main
+
 ```
 
 ## 6. 작업 branch 생성
