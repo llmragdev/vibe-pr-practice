@@ -1,5 +1,5 @@
-﻿function health() {
-  return { status: "ok", version: "1.0.0" };
+function health() {
+  return { status: "ok" };
 }
 
 module.exports = { health };
