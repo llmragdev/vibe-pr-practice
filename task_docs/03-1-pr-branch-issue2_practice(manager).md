@@ -27,14 +27,28 @@ git config user.email "llmragdev@gmail.com"
 git config user.name
 git config user.email
 
-기대 값:
-  (base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> git config user.name
-  hanschoi20
   (base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> git config user.email
   107975999+hanschoi20@users.noreply.github.com
 
 
-## 2. GitHub Issue 생성
+## 2. 원격 저장소 연결 확인 (Remote Check)
+
+이슈를 생성하기 전, 로컬 폴더가 GitHub 저장소와 올바르게 연결되어 있는지 확인합니다.
+
+```powershell
+git remote -v
+```
+
+**기대 결과:**
+```text
+origin  https://github.com/llmragdev/vibe-pr-practice-branch-llmragdev.git (fetch)
+origin  https://github.com/llmragdev/vibe-pr-practice-branch-llmragdev.git (push)
+```
+
+> **오류 발생 시**: 만약 결과가 아무것도 나오지 않는다면, [03-0 가이드](./03-0-pr-branch-issue2_practice(pre-work).md)를 참고하여 `git remote add origin ...` 명령어로 수동 연결하세요.
+
+
+## 3. GitHub Issue 생성
 
 GitHub Issues 기능을 사용하여 `backend/api.js`의 수정을 요청하는 티켓을 생성합니다.
 

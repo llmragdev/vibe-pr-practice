@@ -28,6 +28,11 @@ git remote remove origin
 # 2. 본인 계정에 새 public 저장소 생성 및 로컬 소스 Push
 # (저장소 이름은 폴더명과 동일하게 생성됩니다)
 gh repo create vibe-pr-practice-branch-llmragdev --public --source=. --remote=origin --push
+
+# [필요시] 만약 "X Unable to add remote 'origin'" 오류가 발생한다면 수동으로 연결합니다.
+# (이미 GitHub에 저장소가 생성된 경우 발생할 수 있습니다)
+git remote add origin https://github.com/llmragdev/vibe-pr-practice-branch-llmragdev.git
+git remote -v
 ```
 
 ## 3. 환경 확인
