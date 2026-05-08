@@ -8,16 +8,31 @@
 
 ```powershell
 gh auth status
-git config user.name
-git config user.email
 ```
 
-기대 값:
-*   GitHub CLI account = `llmragdev`
-*   user.name = `llmragdev`
-*   user.email = `llmragdev@gmail.com`
+기대 값: 
+  github.com
+    ✓ Logged in to github.com account llmragdev (keyring)
+    - Active account: true
+    - Git operations protocol: https
+    - Token: gho_************************************
+    - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
 
 > **Tip**: 계정이 다르다면 `gh auth logout` 후 `gh auth login`으로 다시 로그인하세요.
+
+user.name과 user.email 설정합니다. 
+git config user.name "llmragdev"
+git config user.email "llmragdev@gmail.com"
+
+git config user.name
+git config user.email
+
+기대 값:
+  (base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> git config user.name
+  hanschoi20
+  (base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> git config user.email
+  107975999+hanschoi20@users.noreply.github.com
+
 
 ## 2. GitHub Issue 생성
 

@@ -329,5 +329,45 @@ git checkout -b vibe/worker/frontend-greet-exclamation-1
 git status
 git add frontend/app.js
 git commit -m "feat: add exclamation to frontend greeting"
-git push -u origin vibe/worker/frontend-greet-exclamation-1
+```
+
+## 11. GitHub CLI 계정과 Git 작성자 계정의 차이
+
+실무에서 `gh auth status`로 확인한 계정과 `git log`에 찍히는 계정이 달라서 당황하는 경우가 많습니다. 이 둘은 서로 별개의 설정입니다.
+
+### 1) 계정의 종류
+- **GitHub CLI (`gh`)**: GitHub 서버와 통신(PR 생성, Issue 관리 등)하기 위한 **인증용 계정**입니다.
+- **Git Config (`user.name`, `user.email`)**: 내 컴퓨터에서 생성되는 커밋에 "이 코드는 누가 썼다"라고 표시하는 **작성자 정보**입니다.
+
+### 2) 현재 설정 확인
+```powershell
+# GitHub 인증 계정 확인
+gh auth status
+
+# 로컬 Git 작성자 정보 확인
+git config user.name
+git config user.email
+```
+
+### 3) 작성자 정보 수정 방법
+만약 작성자 정보가 잘못되어 있다면 아래 명령어로 수정합니다.
+
+```powershell
+# 현재 저장소에만 적용
+git config user.name "내이름"
+git config user.email "내이메일@example.com"
+
+# 모든 저장소에 공통 적용하려면 --global 추가
+git config --global user.name "내이름"
+```
+
+### 4) 이미 잘못 올라간 커밋 수정하기
+커밋을 이미 했는데 작성자 정보가 틀렸다면, 가장 최근 커밋에 한해 수정이 가능합니다.
+
+```powershell
+# 1. 마지막 커밋의 작성자 수정 (로컬)
+git commit --amend --author="이름 <이메일>" --no-edit
+
+# 2. GitHub에 이미 푸시했다면 강제 푸시 필요 (주의!)
+git push origin main --force
 ```
