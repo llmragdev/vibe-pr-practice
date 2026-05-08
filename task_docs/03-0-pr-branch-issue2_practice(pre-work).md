@@ -63,15 +63,43 @@ gh repo create vibe-pr-practice-study-llmragdev --public
 # (URL의 'llmragdev' 부분은 본인의 GitHub ID로 확인하세요)
 git remote add origin https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
 
-# 4. 로컬 소스를 main 브랜치로 푸시 (매우 중요!)
-# 이 단계가 완료되어야 GitHub 저장소에 코드가 채워집니다.
+# 4. 로컬 소스를 커밋하고 main 브랜치로 푸시 (매우 중요!)
+# (현재 폴더의 모든 파일을 GitHub에 올리기 위해 먼저 커밋을 수행합니다)
+git add .
+git commit -m "initial commit: set up practice repository"
 git push -u origin main
+```
+
+**기대 결과 (`git commit` 시):**
+```text
+[main 10d5454] initial commit: set up practice repository
+ 15 files changed, 484 insertions(+), 13 deletions(-)
+ create mode 100644 task_docs/03-1-pr-branch-issue2_practice(manager-issue).md
+ ...
+```
+
+**기대 결과 (`git push` 시):**
+```text
+Enumerating objects: 136, done.
+...
+To https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+```
 
 # [최종 확인 2] 브라우저에서 다시 새로고침(F5) 해보세요.
 # (이제 'backend', 'frontend' 폴더 등 소스 코드가 보인다면 성공입니다!)
 
 # 5. 연결 상태 확인 (터미널)
+
+```powershell
 git remote -v
+```
+
+**기대 결과:**
+```text
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (fetch)
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (push)
 ```
 
 ## 3. 환경 확인

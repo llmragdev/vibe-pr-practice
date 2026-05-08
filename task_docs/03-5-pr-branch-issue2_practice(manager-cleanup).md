@@ -4,17 +4,25 @@
 
 ## 1. 완료 파일 이동 (Cleanup)
 
+# 1. 완료된 Task 파일 이동
+
 실습 가이드로 사용된 `task` 폴더의 파일들을 `task_done` 폴더로 옮겨 완료 처리를 합니다.
 
+> **💡 파일이 없는 경우**: 만약 `task` 폴더가 비어있거나 파일이 없다면, 원본 폴더(`main\task`)에서 해당 파일들을 복사해 오세요.
+
 ```powershell
-# 완료 폴더 생성 (없을 경우)
+# 1. 작업 파일들을 Git 추적 대상으로 추가 (이미 있다면 생략 가능)
+git add task
+
+# 2. 완료 폴더 생성 (없을 경우)
 mkdir task_done\backend
 
-# 파일 이동
-git mv task\backend\issue-2.md task_done\backend\issue-2.md
-git mv task\backend\review-2.md task_done\backend\review-2.md
+# 3. 파일 이동
+# (※ 실제 파일이 위치한 task/docs 폴더에서 task_done/backend로 옮깁니다)
+git mv task\docs\issue-2.md task_done\backend\issue-2.md
+git mv task\docs\review-2.md task_done\backend\review-2.md
 
-# 변경사항 커밋 및 푸시
+# 4. 변경사항 커밋 및 푸시
 git commit -m "chore: move completed backend task"
 git push origin main
 ```

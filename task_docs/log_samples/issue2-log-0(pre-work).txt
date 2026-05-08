@@ -15,3 +15,51 @@ Resolving deltas: 100% (45/45), done.
   https://github.com/llmragdev/vibe-pr-practice-study-llmragdev
 (base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git remote add origin https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
 (base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+
+
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git add .
+warning: in the working copy of 'task_docs/00-bootcamp-pr-practice-plan.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/01-1-pr-fork-practice(worker).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/01-2-pr-fork-practice(manager-참고만).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/01-3-부연설명-pr-fork-practice.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/02-pr-branch-issue1_practice.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-0-pr-branch-issue2_practice(pre-work).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-ref-github-issue-closing-keywords.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/98-git-basic-command-guide.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/99-git-permission-guide.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-1-pr-branch-issue2_practice(manager-issue).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-2-pr-branch-issue2_practice(worker-work).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-3-pr-branch-issue2_practice(worker-pr).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-4-pr-branch-issue2_practice(manager-merge).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/03-5-pr-branch-issue2_practice(manager-cleanup).md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'task_docs/97-pr-branch-cleanup.md', LF will be replaced by CRLF the next time Git touches it
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git commit -m "initial commit: set up practice repository"
+[main 10d5454] initial commit: set up practice repository
+ 7 files changed, 484 insertions(+), 13 deletions(-)
+ create mode 100644 task_docs/03-1-pr-branch-issue2_practice(manager-issue).md
+ create mode 100644 task_docs/03-2-pr-branch-issue2_practice(worker-work).md
+ create mode 100644 task_docs/03-3-pr-branch-issue2_practice(worker-pr).md
+ create mode 100644 task_docs/03-4-pr-branch-issue2_practice(manager-merge).md
+ create mode 100644 task_docs/03-5-pr-branch-issue2_practice(manager-cleanup).md
+ create mode 100644 task_docs/97-pr-branch-cleanup.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git push -u origin main
+Enumerating objects: 136, done.
+Counting objects: 100% (136/136), done.
+Delta compression using up to 22 threads
+Compressing objects: 100% (79/79), done.
+Writing objects: 100% (136/136), 98.95 KiB | 16.49 MiB/s, done.
+Total 136 (delta 50), reused 123 (delta 45), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (50/50), done.
+To https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git remote -v
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (fetch)
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (push)
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+

@@ -331,6 +331,33 @@ git add frontend/app.js
 git commit -m "feat: add exclamation to frontend greeting"
 ```
 
+## 💡 Git Config와 GitHub 계정의 관계 (중요)
+
+많은 실습자가 `gh auth login`으로 로그인했는데 왜 `git config`를 또 설정해야 하는지 궁금해합니다.
+
+### 1. 로컬 도장(Git) vs 온라인 신분증(GitHub)
+*   **Git Config**: 여러분의 컴퓨터에서 작성하는 모든 커밋에 찍히는 **'도장'**입니다. 오프라인에서도 작동하며, 어떤 이름을 써도 제한이 없습니다.
+*   **GitHub**: 푸시된 커밋을 받아서 보여주는 **'게시판'**입니다.
+
+### 2. 왜 이메일(`user.email`)이 중요한가? (Contribution Matching)
+GitHub은 푸시된 커밋의 **이메일 주소**를 보고 자신의 사용자 DB에서 해당 사용자를 찾습니다.
+*   **이메일이 일치하면**: 커밋 옆에 여러분의 **프로필 사진**이 뜨고, 깃허브 메인 페이지의 **잔디(Contribution Graph)**가 심어집니다.
+*   **이메일이 다르면**: 깃허브는 이 커밋이 누구의 것인지 알 수 없어 **회색 기본 아이콘**으로 표시하며, 잔디도 심어지지 않습니다.
+
+### 3. 이름(`user.name`) 설정 권장 사항
+이름은 기술적으로 잔디 심기에 영향을 주지 않지만, 코드 리뷰 시 **누가 작업했는지 직관적으로 알 수 있게** GitHub ID와 일치시키거나 실명을 사용하는 것이 실무 표준입니다.
+
+> **결론**: 실습 시 `user.name`과 `user.email`을 현재 역할(Manager/Worker)의 GitHub 정보와 일치시키는 것은, GitHub이 여러분의 기여를 정확히 기록하고 프로필을 연결하게 만들기 위함입니다.
+
+```powershell
+# 현재 저장소에만 적용
+git config user.name "내이름"
+git config user.email "내이메일@example.com"
+
+# 모든 저장소에 공통 적용하려면 --global 추가
+git config --global user.name "내이름"
+```
+
 ## 11. GitHub CLI 계정과 Git 작성자 계정의 차이
 
 실무에서 `gh auth status`로 확인한 계정과 `git log`에 찍히는 계정이 달라서 당황하는 경우가 많습니다. 이 둘은 서로 별개의 설정입니다.

@@ -1,0 +1,23 @@
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh auth status
+github.com
+  ✓ Logged in to github.com account hanschoi20 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git status
+On branch vibe/worker/backend-health-version-2
+Your branch is up to date with 'origin/vibe/worker/backend-health-version-2'.
+
+nothing to commit, working tree clean
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh pr create `
+>>   --base main `
+>>   --head vibe/worker/backend-health-version-2 `
+>>   --title "feat: add version to health response #2" `
+>>   --body "Closes #2"
+  
+Creating pull request for vibe/worker/backend-health-version-2 into main in llmragdev/vibe-pr-practice-study-llmragdev
+
+https://github.com/llmragdev/vibe-pr-practice-study-llmragdev/pull/2
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 

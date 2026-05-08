@@ -1,0 +1,30 @@
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh auth status
+github.com
+  ✓ Logged in to github.com account llmragdev (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'delete_repo', 'gist', 'read:org', 'repo', 'workflow'
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git config user.name "llmragdev"
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git config user.email "llmragdev@gmail.com"
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git config user.name
+llmragdev
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git config user.email
+llmragdev@gmail.com
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git remote -v
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (fetch)
+origin  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git (push)
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh issue create `
+>>   --title "backend: add version to health response" `
+>>   --body 'Update backend/api.js so health() returns { status: "ok", version: "1.0.0" }.'
+
+Creating issue in llmragdev/vibe-pr-practice-study-llmragdev
+
+https://github.com/llmragdev/vibe-pr-practice-study-llmragdev/issues/1
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh issue list --state open
+
+Showing 1 of 1 open issue in llmragdev/vibe-pr-practice-study-llmragdev
+
+ID  TITLE                                    LABELS  UPDATED            
+#1  backend: add version to health response          about 5 minutes ago
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 

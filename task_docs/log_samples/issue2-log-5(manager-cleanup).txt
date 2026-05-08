@@ -1,0 +1,159 @@
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> mkdir task_done\backend
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-05-08  오후 11:50                backend
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\backend\issue-2.md task_done\backend\issue-2.md
+fatal: bad source, source=task/backend/issue-2.md, destination=task_done/backend/issue-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\backend\review-2.md task_done\backend\review-2.md
+fatal: bad source, source=task/backend/review-2.md, destination=task_done/backend/review-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git commit -m "chore: move completed backend task"
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git push origin main
+Everything up-to-date
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh pr list --state all --limit 5
+
+Showing 1 of 1 pull request in llmragdev/vibe-pr-practice-study-llmragdev that matches your search
+
+ID  TITLE                                    BRANCH                                CREATED AT          
+#2  feat: add version to health response #2  vibe/worker/backend-health-version-2  about 15 minutes ago
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh issue list --state all --limit 5
+
+Showing 1 of 1 issue in llmragdev/vibe-pr-practice-study-llmragdev that matches your search
+
+ID  TITLE                                    LABELS  UPDATED           
+#1  backend: add version to health response          about 1 minute ago
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> ls task_done\backend
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\backend\issue-2.md task_done\backend\issue-2.md
+fatal: bad source, source=task/backend/issue-2.md, destination=task_done/backend/issue-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\backend\review-2.md task_done\backend\review-2.md
+fatal: bad source, source=task/backend/review-2.md, destination=task_done/backend/review-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> ls
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-05-08  오후 11:45                backend
+d-----      2026-05-08   오후 9:53                docs
+d-----      2026-05-08   오후 9:53                frontend
+d-----      2026-05-08   오후 9:53                task
+d-----      2026-05-08  오후 10:22                task_docs
+d-----      2026-05-08  오후 11:50                task_done
+-a----      2026-05-08   오후 9:53          59091 Claude-by-Anthropic-for-PowerPoint.pptx
+-a----      2026-05-08   오후 9:53            660 README.md
+-a----      2026-05-08   오후 9:53            165 ~$Claude-by-Anthropic-for-PowerPoint.pptx
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> cd task_done
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done> ls -l
+Get-ChildItem : 'LiteralPath' 매개 변수에 대한 인수가 누락되었습니다. 유형이 'System.String[]'인 매개 변수를 지정하고 
+다시 시도하십시오.
+위치 줄:1 문자:4
++ ls -l
++    ~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-ChildItem], ParameterBindingException
+    + FullyQualifiedErrorId : MissingArgument,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done> ls
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-05-08  오후 11:50                backend
+-a----      2026-05-08   오후 9:53              2 .gitkeep
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done> cd ..
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> # 1. task 폴더 내부 구조 확인
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> ls -Recurse task
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-05-08   오후 9:53                docs
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task\docs
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-05-08   오후 9:53            589 issue-1.md
+-a----      2026-05-08   오후 9:53           1544 issue-2.md
+-a----      2026-05-08   오후 9:53            614 issue-3.md
+-a----      2026-05-08   오후 9:53            388 review-1.md
+-a----      2026-05-08   오후 9:53           1646 review-2.md
+-a----      2026-05-08   오후 9:53            378 review-3.md
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> # 2. Git이 추적 중인 파일 목록 확인
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git ls-files task
+task/docs/issue-1.md
+task/docs/issue-2.md
+task/docs/issue-3.md
+task/docs/review-1.md
+task/docs/review-2.md
+task/docs/review-3.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\docs\issue-2.md task_done\backend\issue-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git mv task\docs\review-2.md task_done\backend\review-2.md
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git commit -m "chore: move completed backend task"
+[main fd74f3b] chore: move completed backend task
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename {task/docs => task_done/backend}/issue-2.md (100%)
+ rename {task/docs => task_done/backend}/review-2.md (100%)
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git push origin main
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 22 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 527 bytes | 527.00 KiB/s, done.
+Total 6 (delta 2), reused 1 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
+   b5c6be8..fd74f3b  main -> main
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh pr list --state all --limit 5
+
+Showing 1 of 1 pull request in llmragdev/vibe-pr-practice-study-llmragdev that matches your search
+
+ID  TITLE                                    BRANCH                                CREATED AT          
+#2  feat: add version to health response #2  vibe/worker/backend-health-version-2  about 19 minutes ago
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh issue list --state all --limit 5
+
+Showing 1 of 1 issue in llmragdev/vibe-pr-practice-study-llmragdev that matches your search
+
+ID  TITLE                                    LABELS  UPDATED            
+#1  backend: add version to health response          about 5 minutes ago
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> ls task_done\backend
+
+
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done\backend
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-05-08   오후 9:53           1544 issue-2.md
+-a----      2026-05-08   오후 9:53           1646 review-2.md
+
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 

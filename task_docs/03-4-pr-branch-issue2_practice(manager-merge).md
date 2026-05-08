@@ -95,17 +95,22 @@ Fast-forward
 
 ## 5. 이슈 자동 종료 확인
 
-이슈가 키워드에 의해 자동으로 닫혔는지 확인합니다.
+이슈가 키워드(`Closes #1`)에 의해 자동으로 닫혔는지 확인합니다. 
+(※ 주의: 여기서 확인하는 번호는 PR 번호가 아닌, 처음에 생성했던 **이슈 번호(#1)**입니다.)
 
 ```powershell
-gh issue view 2
+gh issue view 1
 ```
 
-**기대 결과 (`gh issue view` 시):**
-```text
-backend: add version to health response llmragdev/vibe-pr-practice#2
-Closed • llmragdev opened about 7 hours ago • 0 comments
-```
+#### 💡 만약 이슈가 여전히 'Open' 상태라면?
+PR을 머지했는데도 이슈가 자동으로 닫히지 않았다면 보통 다음 이유 때문입니다.
+
+*   **번호 혼동**: PR 본문에 `Closes #1`(이슈 번호) 대신 **`#2`(PR 번호)**를 적었을 확률이 높습니다. 
+*   **수동 종료 방법**: 이미 머지가 완료된 후에는 키워드를 수정해도 소용이 없습니다. 이때는 관리자가 아래 명령어로 직접 이슈를 닫아주어야 합니다.
+    ```powershell
+    # 이슈 번호를 정확히 입력하여 수동 종료
+    gh issue close 1
+    ```
 
 ---
 **다음 단계**: [03-5-pr-branch-issue2_practice(manager-cleanup).md](./03-5-pr-branch-issue2_practice(manager-cleanup).md)
