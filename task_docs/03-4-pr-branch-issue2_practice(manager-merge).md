@@ -1,4 +1,4 @@
-# 03-4. PR Branch Practice: Issue 2 (Manager - Merge)
+# 03-4. PR Branch Practice: Issue 2 (Manager-Merge)
 
 이 단계에서는 **Manager**가 Worker의 PR을 검토하고 최종 머지(Merge)를 수행합니다.
 
@@ -108,4 +108,4 @@ Closed • llmragdev opened about 7 hours ago • 0 comments
 ```
 
 ---
-**다음 단계**: [03-5-pr-branch-issue2_practice(manager).md](./03-5-pr-branch-issue2_practice(manager).md)
+**다음 단계**: [03-5-pr-branch-issue2_practice(manager-cleanup).md](./03-5-pr-branch-issue2_practice(manager-cleanup).md)

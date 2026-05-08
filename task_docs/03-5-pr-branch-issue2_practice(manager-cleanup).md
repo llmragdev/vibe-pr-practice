@@ -1,4 +1,4 @@
-# 03-5. PR Branch Practice: Issue 2 (Manager - Cleanup)
+# 03-5. PR Branch Practice: Issue 2 (Manager-Cleanup)
 
 마지막 단계로 완료된 작업 파일을 정리하고 최종 상태를 확인합니다.
 
@@ -44,7 +44,7 @@ ls task_done\backend
 
 **기대 결과 (`ls` 시):**
 ```text
-    디렉터리: E:\proj_boot\vibe-pr-practice-branch-llmragdev\task_done\backend
+    디렉터리: E:\proj_boot\vibe-pr-practice-study-llmragdev\task_done\backend
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----

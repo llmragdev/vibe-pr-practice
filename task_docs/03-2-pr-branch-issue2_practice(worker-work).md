@@ -1,4 +1,4 @@
-# 03-2. PR Branch Practice: Issue 2 (Worker - Work)
+# 03-2. PR Branch Practice: Issue 2 (Worker-Work)
 
 이 단계에서는 **Worker**가 할당된 이슈를 확인하고, 브랜치를 생성하여 코드를 수정합니다.
 
@@ -10,7 +10,7 @@
 
 ```powershell
 # Worker 작업 폴더로 이동 (이미 클론된 상태여야 함)
-cd E:\proj_boot\vibe-pr-practice-branch-llmragdev
+cd E:\proj_boot\vibe-pr-practice-study-llmragdev
 
 # 1. 기존 계정 로그아웃 후 Worker 계정으로 로그인
 gh auth logout
@@ -97,4 +97,4 @@ To https://github.com/llmragdev/vibe-pr-practice.git
 ```
 
 ---
-**다음 단계**: [03-3-pr-branch-issue2_practice(worker).md](./03-3-pr-branch-issue2_practice(worker).md)
+**다음 단계**: [03-3-pr-branch-issue2_practice(worker-pr).md](./03-3-pr-branch-issue2_practice(worker-pr).md)

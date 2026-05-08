@@ -1,4 +1,4 @@
-# 03-3. PR Branch Practice: Issue 2 (Worker - PR)
+# 03-3. PR Branch Practice: Issue 2 (Worker-PR)
 
 이 단계에서는 **Worker**가 작업한 내용을 바탕으로 Pull Request(PR)를 생성합니다.
 
@@ -29,4 +29,4 @@ https://github.com/llmragdev/vibe-pr-practice/pull/3
 생성된 PR의 URL을 확인하고 Manager에게 검토를 요청합니다.
 
 ---
-**다음 단계**: [03-4-pr-branch-issue2_practice(manager).md](./03-4-pr-branch-issue2_practice(manager).md)
+**다음 단계**: [03-4-pr-branch-issue2_practice(manager-merge).md](./03-4-pr-branch-issue2_practice(manager-merge).md)

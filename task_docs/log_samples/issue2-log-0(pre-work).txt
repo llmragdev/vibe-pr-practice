@@ -1,14 +1,17 @@
-(base) PS E:\proj_boot> gh repo clone llmragdev/vibe-pr-practice vibe-pr-practice-branch-llmragdev
-Cloning into 'vibe-pr-practice-branch-llmragdev'...
-remote: Enumerating objects: 111, done.
-remote: Counting objects: 100% (111/111), done.
-remote: Compressing objects: 100% (74/74), done.
-remote: Total 111 (delta 34), reused 102 (delta 25), pack-reused 0 (from 0)
-Receiving objects: 100% (111/111), 87.51 KiB | 5.83 MiB/s, done.
-Resolving deltas: 100% (34/34), done.
-(base) PS E:\proj_boot> cd vibe-pr-practice-branch-llmragdev
-(base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> git remote remove origin
-(base) PS E:\proj_boot\vibe-pr-practice-branch-llmragdev> gh repo create vibe-pr-practice-branch-llmragdev --public --source=. --remote=origin --push
-✓ Created repository llmragdev/vibe-pr-practice-branch-llmragdev on github.com
-  https://github.com/llmragdev/vibe-pr-practice-branch-llmragdev
-X Unable to add remote "origin"
+(base) PS E:\proj_boot> cd E:\proj_boot
+(base) PS E:\proj_boot> gh repo clone llmragdev/vibe-pr-practice vibe-pr-practice-study-llmragdev
+Cloning into 'vibe-pr-practice-study-llmragdev'...
+remote: Enumerating objects: 126, done.
+remote: Counting objects: 100% (126/126), done.
+remote: Compressing objects: 100% (85/85), done.
+remote: Total 126 (delta 45), reused 110 (delta 29), pack-reused 0 (from 0)
+Receiving objects: 100% (126/126), 92.46 KiB | 6.60 MiB/s, done.
+Resolving deltas: 100% (45/45), done.
+(base) PS E:\proj_boot>
+
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git remote remove origin
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> gh repo create vibe-pr-practice-study-llmragdev --public
+✓ Created repository llmragdev/vibe-pr-practice-study-llmragdev on github.com
+  https://github.com/llmragdev/vibe-pr-practice-study-llmragdev
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> git remote add origin https://github.com/llmragdev/vibe-pr-practice-study-llmragdev.git
+(base) PS E:\proj_boot\vibe-pr-practice-study-llmragdev> 
